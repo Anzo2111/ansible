@@ -1,0 +1,18 @@
+
+- hosts: web
+  vars:
+    packages:
+      - git
+      # - pm2
+      - nodejs
+      - nginx
+    repo: https://github.com/fropa/nodejs-hello
+    user: Devops
+    appPath: /tmp/server/app.js
+  roles:
+    - role : create_and_add_user
+    - role : install_packages
+    - role : clone_repository
+    - role : start_server
+    - role : start_nginx
+

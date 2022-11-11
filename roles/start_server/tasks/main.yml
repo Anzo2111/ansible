@@ -1,0 +1,21 @@
+
+- name: permission for nginx
+  become: true
+  become_user: root
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+
+
+- name: nodejs app 
+  become: true
+  become_user: "{{ user }}"
+  command: 
+    chdir: "/home/Devops"
+    cmd: "/usr/local/bin/pm2 start --name server {{ appPath }}"
+
+
+
+
+

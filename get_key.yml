@@ -1,0 +1,17 @@
+
+- hosts: web
+  
+  tasks:
+    - name : copy key
+      copy:
+        src: /home/Devops/.ssh/id_rsa.pub
+        dest: /tmp/key.pub
+
+    - name : get key
+      shell: cat /tmp/key.pub
+      register: pubkey
+
+    - name: put pubkey
+      lineinfile:
+          path: "/home/devops/.ssh/authorized_keys"
+          line: "{{ pubkey.stdout }}"

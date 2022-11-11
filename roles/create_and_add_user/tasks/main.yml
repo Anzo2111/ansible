@@ -1,0 +1,5 @@
+- name: create user
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: Devops
